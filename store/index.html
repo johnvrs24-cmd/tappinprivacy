@@ -25,7 +25,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Nav */
         nav {
             padding: 24px 32px;
             display: flex;
@@ -49,7 +48,6 @@
         }
         .nav-link:hover { color: var(--accent); }
 
-        /* Hero */
         .hero {
             max-width: 1100px;
             margin: 0 auto;
@@ -90,27 +88,17 @@
             width: 200px;
             height: 200px;
             border-radius: 50%;
-            border: 1px solid #333;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-direction: column;
-            gap: 8px;
             overflow: hidden;
         }
 
         .tag-logo {
-            width: 120px;
-            height: 120px;
-            object-fit: contain;
-        }
-
-        .tag-label {
-            font-family: 'Space Mono', monospace;
-            font-size: 11px;
-            color: var(--muted);
-            letter-spacing: 3px;
-            text-transform: uppercase;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
         }
 
         .ring-1, .ring-2, .ring-3 {
@@ -177,7 +165,6 @@
             color: var(--muted);
         }
 
-        /* Features */
         .features {
             display: flex;
             gap: 16px;
@@ -205,171 +192,41 @@
             flex-shrink: 0;
         }
 
-        /* Form */
-        .order-section {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 60px 32px 80px;
-        }
-
-        .order-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 48px;
-            max-width: 560px;
-            margin: 0 auto;
-        }
-
-        .order-title {
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            margin-bottom: 8px;
-        }
-
-        .order-subtitle {
-            font-size: 14px;
-            color: var(--muted);
-            margin-bottom: 32px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        label {
-            display: block;
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--muted);
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 14px 16px;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            color: var(--text);
-            font-family: 'DM Sans', sans-serif;
-            font-size: 15px;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            border-color: #444;
-        }
-
-        input::placeholder, textarea::placeholder {
-            color: #444;
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-
-        select {
-            appearance: none;
-            cursor: pointer;
-        }
-
-        .quantity-selector {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .qty-btn {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            background: var(--bg);
-            color: var(--accent);
-            font-size: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s;
-        }
-
-        .qty-btn:hover { background: #1a1a1a; }
-
-        .qty-value {
-            font-family: 'Space Mono', monospace;
-            font-size: 20px;
-            font-weight: 700;
-            min-width: 32px;
-            text-align: center;
-        }
-
-        .order-total {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-            margin: 24px 0;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .total-label {
-            font-size: 14px;
-            color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .total-price {
-            font-family: 'Space Mono', monospace;
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 18px;
+        .buy-btn {
+            display: inline-block;
+            padding: 18px 48px;
             background: var(--accent);
             color: var(--bg);
             border: none;
             border-radius: 14px;
             font-family: 'DM Sans', sans-serif;
-            font-size: 16px;
+            font-size: 17px;
             font-weight: 700;
             cursor: pointer;
             transition: opacity 0.2s, transform 0.1s;
-            margin-top: 8px;
+            text-decoration: none;
         }
 
-        .submit-btn:hover { opacity: 0.9; }
-        .submit-btn:active { transform: scale(0.98); }
+        .buy-btn:hover { opacity: 0.9; }
+        .buy-btn:active { transform: scale(0.98); }
 
-        .payment-note {
-            text-align: center;
-            font-size: 12px;
+        .buy-note {
+            font-size: 13px;
             color: var(--muted);
             margin-top: 16px;
-            line-height: 1.6;
         }
 
-        /* How it works */
+        .buy-note svg {
+            width: 14px;
+            height: 14px;
+            vertical-align: -2px;
+            margin-right: 4px;
+        }
+
         .how-section {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 60px 32px;
+            padding: 80px 32px;
             border-top: 1px solid var(--border);
         }
 
@@ -414,7 +271,71 @@
             line-height: 1.6;
         }
 
-        /* Footer */
+        .details-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 32px 80px;
+            border-top: 1px solid var(--border);
+        }
+
+        .details-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 48px;
+            text-align: center;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .detail-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+        }
+
+        .detail-card-title {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .detail-card-desc {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .cta-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 32px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .cta-desc {
+            font-size: 16px;
+            color: var(--muted);
+            margin-bottom: 32px;
+        }
+
         footer {
             max-width: 1100px;
             margin: 0 auto;
@@ -444,35 +365,6 @@
 
         .footer-links a:hover { color: var(--muted); }
 
-        /* Success state */
-        .success-message {
-            display: none;
-            text-align: center;
-            padding: 60px 20px;
-        }
-
-        .success-message.show {
-            display: block;
-        }
-
-        .success-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-
-        .success-title {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .success-desc {
-            font-size: 15px;
-            color: var(--muted);
-            line-height: 1.6;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
             .hero {
                 grid-template-columns: 1fr;
@@ -485,17 +377,17 @@
             }
             .tag-circle { width: 200px; height: 200px; }
             .tag-inner { width: 140px; height: 140px; }
-            .tag-icon { font-size: 28px; }
+            .tag-logo { width: 140px; height: 140px; }
             .ring-1 { width: 260px; height: 260px; }
             .ring-2 { width: 300px; height: 300px; }
             .ring-3 { display: none; }
             h1 { font-size: 36px; }
             .hero-content { padding: 0; }
-            .form-row { grid-template-columns: 1fr; }
             .steps { grid-template-columns: 1fr; gap: 16px; }
             .step { padding: 24px 16px; }
-            .order-card { padding: 32px 24px; }
+            .details-grid { grid-template-columns: 1fr; }
             footer { flex-direction: column; gap: 16px; text-align: center; }
+            .buy-btn { display: block; text-align: center; }
         }
     </style>
 </head>
@@ -503,7 +395,7 @@
 
     <nav>
         <div class="logo">TappIn</div>
-        <a href="#order" class="nav-link">Order Now ↓</a>
+        <a href="https://buy.stripe.com/9B6fZhbXk7m2amVgObgA800" class="nav-link">Order Now ↓</a>
     </nav>
 
     <section class="hero">
@@ -531,6 +423,11 @@
                 <div class="feature"><div class="feature-dot"></div>Works with iPhone 7+</div>
                 <div class="feature"><div class="feature-dot"></div>Coin-sized</div>
             </div>
+            <a href="https://buy.stripe.com/9B6fZhbXk7m2amVgObgA800" class="buy-btn">Buy Now</a>
+            <p class="buy-note">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                Secure checkout powered by Stripe
+            </p>
         </div>
     </section>
 
@@ -555,74 +452,32 @@
         </div>
     </section>
 
-    <section class="order-section" id="order">
-        <div class="order-card">
-            <div id="orderForm">
-                <div class="order-title">Order your tag</div>
-                <div class="order-subtitle">We'll configure and post it to you within 2-3 working days.</div>
-
-                <div class="form-row form-group">
-                    <div>
-                        <label>First Name</label>
-                        <input type="text" id="firstName" placeholder="John" required>
-                    </div>
-                    <div>
-                        <label>Last Name</label>
-                        <input type="text" id="lastName" placeholder="Smith" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" id="email" placeholder="you@university.ac.uk" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Address Line 1</label>
-                    <input type="text" id="address1" placeholder="123 Library Road" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Address Line 2 (optional)</label>
-                    <input type="text" id="address2" placeholder="Flat 4B">
-                </div>
-
-                <div class="form-row form-group">
-                    <div>
-                        <label>City</label>
-                        <input type="text" id="city" placeholder="Cambridge" required>
-                    </div>
-                    <div>
-                        <label>Postcode</label>
-                        <input type="text" id="postcode" placeholder="CB2 1TN" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Quantity</label>
-                    <div class="quantity-selector">
-                        <button class="qty-btn" onclick="changeQty(-1)">−</button>
-                        <span class="qty-value" id="qty">1</span>
-                        <button class="qty-btn" onclick="changeQty(1)">+</button>
-                    </div>
-                </div>
-
-                <div class="order-total">
-                    <span class="total-label">Total</span>
-                    <span class="total-price" id="totalPrice">£10.00</span>
-                </div>
-
-                <button class="submit-btn" onclick="submitOrder()">Place Order</button>
-
-                <p class="payment-note">You'll receive a payment link via email after placing your order.<br>UK shipping only. Tags are posted within 2-3 working days.</p>
+    <section class="details-section">
+        <div class="details-title">What You Get</div>
+        <div class="details-grid">
+            <div class="detail-card">
+                <div class="detail-card-title">NTAG215 NFC Tag</div>
+                <div class="detail-card-desc">Pre-configured and ready to use straight out of the envelope. No setup required.</div>
             </div>
-
-            <div class="success-message" id="successMsg">
-                <div class="success-icon">✓</div>
-                <div class="success-title">Order received!</div>
-                <p class="success-desc">Check your email for a payment link. Once paid, we'll configure your tag and post it within 2-3 working days.</p>
+            <div class="detail-card">
+                <div class="detail-card-title">Adhesive Backing</div>
+                <div class="detail-card-desc">Peel and stick anywhere — your desk, laptop, bookshelf, or library spot.</div>
+            </div>
+            <div class="detail-card">
+                <div class="detail-card-title">Works with Any iPhone</div>
+                <div class="detail-card-desc">Compatible with iPhone 7 and later. Just hold your phone near the tag.</div>
+            </div>
+            <div class="detail-card">
+                <div class="detail-card-title">Free UK Shipping</div>
+                <div class="detail-card-desc">Posted within 2-3 working days via Royal Mail. Fits through your letterbox.</div>
             </div>
         </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-title">Ready to focus?</div>
+        <p class="cta-desc">Get your TappIn tag and start building better study habits.</p>
+        <a href="https://buy.stripe.com/9B6fZhbXk7m2amVgObgA800" class="buy-btn">Buy Now — £10</a>
     </section>
 
     <footer>
@@ -632,60 +487,6 @@
             <a href="mailto:johnvrs24@gmail.com">Contact</a>
         </div>
     </footer>
-
-    <script>
-        let quantity = 1;
-        const pricePerTag = 10;
-
-        function changeQty(delta) {
-            quantity = Math.max(1, Math.min(10, quantity + delta));
-            document.getElementById('qty').textContent = quantity;
-            document.getElementById('totalPrice').textContent = '£' + (quantity * pricePerTag).toFixed(2);
-        }
-
-        function submitOrder() {
-            const firstName = document.getElementById('firstName').value.trim();
-            const lastName = document.getElementById('lastName').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const address1 = document.getElementById('address1').value.trim();
-            const address2 = document.getElementById('address2').value.trim();
-            const city = document.getElementById('city').value.trim();
-            const postcode = document.getElementById('postcode').value.trim();
-
-            if (!firstName || !lastName || !email || !address1 || !city || !postcode) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-
-            if (!email.includes('@')) {
-                alert('Please enter a valid email address.');
-                return;
-            }
-
-            // Build mailto link to send order to yourself
-            const subject = encodeURIComponent('TappIn Tag Order - ' + firstName + ' ' + lastName);
-            const body = encodeURIComponent(
-                'NEW ORDER\n' +
-                '=========\n\n' +
-                'Name: ' + firstName + ' ' + lastName + '\n' +
-                'Email: ' + email + '\n\n' +
-                'Address:\n' +
-                address1 + '\n' +
-                (address2 ? address2 + '\n' : '') +
-                city + '\n' +
-                postcode + '\n\n' +
-                'Quantity: ' + quantity + '\n' +
-                'Total: £' + (quantity * pricePerTag).toFixed(2) + '\n'
-            );
-
-            // Open mail client
-            window.location.href = 'mailto:johnvrs24@gmail.com?subject=' + subject + '&body=' + body;
-
-            // Show success
-            document.getElementById('orderForm').style.display = 'none';
-            document.getElementById('successMsg').classList.add('show');
-        }
-    </script>
 
 </body>
 </html>
