@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TappIn — Get Your Tag</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #050505;
+            --surface: #111;
+            --border: #222;
+            --text: #eee;
+            --muted: #777;
+            --accent: #fff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Nav */
+        nav {
+            padding: 24px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-family: 'Space Mono', monospace;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--accent);
+        }
+        .nav-link {
+            font-size: 14px;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav-link:hover { color: var(--accent); }
+
+        /* Hero */
+        .hero {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 32px 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 480px;
+        }
+
+        .tag-circle {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 40% 35%, #333 0%, #111 70%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 0 120px rgba(255,255,255,0.04);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .tag-inner {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 1px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 8px;
+            overflow: hidden;
+        }
+
+        .tag-logo {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+        }
+
+        .tag-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .ring-1, .ring-2, .ring-3 {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .ring-1 { width: 340px; height: 340px; animation: pulse 4s ease-in-out infinite; }
+        .ring-2 { width: 400px; height: 400px; animation: pulse 4s ease-in-out infinite 0.5s; }
+        .ring-3 { width: 460px; height: 460px; animation: pulse 4s ease-in-out infinite 1s; }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .hero-content { padding: 20px 0; }
+
+        .badge {
+            display: inline-block;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            border: 1px solid var(--border);
+            padding: 6px 14px;
+            border-radius: 100px;
+            margin-bottom: 28px;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+        }
+
+        .hero-desc {
+            font-size: 17px;
+            line-height: 1.7;
+            color: var(--muted);
+            margin-bottom: 36px;
+            max-width: 420px;
+        }
+
+        .price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 36px;
+        }
+
+        .price {
+            font-family: 'Space Mono', monospace;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .price-note {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        /* Features */
+        .features {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--muted);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 10px 16px;
+            border-radius: 10px;
+        }
+
+        .feature-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            flex-shrink: 0;
+        }
+
+        /* Form */
+        .order-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 32px 80px;
+        }
+
+        .order-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 48px;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .order-title {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+
+        .order-subtitle {
+            font-size: 14px;
+            color: var(--muted);
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--muted);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #444;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #444;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        select {
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .qty-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--accent);
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .qty-btn:hover { background: #1a1a1a; }
+
+        .qty-value {
+            font-family: 'Space Mono', monospace;
+            font-size: 20px;
+            font-weight: 700;
+            min-width: 32px;
+            text-align: center;
+        }
+
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin: 24px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .total-label {
+            font-size: 14px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .total-price {
+            font-family: 'Space Mono', monospace;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: var(--accent);
+            color: var(--bg);
+            border: none;
+            border-radius: 14px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.1s;
+            margin-top: 8px;
+        }
+
+        .submit-btn:hover { opacity: 0.9; }
+        .submit-btn:active { transform: scale(0.98); }
+
+        .payment-note {
+            text-align: center;
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 16px;
+            line-height: 1.6;
+        }
+
+        /* How it works */
+        .how-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        .how-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 48px;
+            text-align: center;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .step {
+            text-align: center;
+            padding: 32px 20px;
+        }
+
+        .step-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 48px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+        }
+
+        .step-title {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .step-desc {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 32px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-text {
+            font-size: 13px;
+            color: #444;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            font-size: 13px;
+            color: #444;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: var(--muted); }
+
+        /* Success state */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .success-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .success-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .success-desc {
+            font-size: 15px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 40px 24px 40px;
+            }
+            .hero-visual {
+                height: 300px;
+                order: -1;
+            }
+            .tag-circle { width: 200px; height: 200px; }
+            .tag-inner { width: 140px; height: 140px; }
+            .tag-icon { font-size: 28px; }
+            .ring-1 { width: 260px; height: 260px; }
+            .ring-2 { width: 300px; height: 300px; }
+            .ring-3 { display: none; }
+            h1 { font-size: 36px; }
+            .hero-content { padding: 0; }
+            .form-row { grid-template-columns: 1fr; }
+            .steps { grid-template-columns: 1fr; gap: 16px; }
+            .step { padding: 24px 16px; }
+            .order-card { padding: 32px 24px; }
+            footer { flex-direction: column; gap: 16px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">TappIn</div>
+        <a href="#order" class="nav-link">Order Now ↓</a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-visual">
+            <div class="ring-3"></div>
+            <div class="ring-2"></div>
+            <div class="ring-1"></div>
+            <div class="tag-circle">
+                <div class="tag-inner">
+                    <img src="logo.png" alt="TappIn" class="tag-logo">
+                </div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <div class="badge">Free UK Shipping</div>
+            <h1>Your focus,<br>one tap away.</h1>
+            <p class="hero-desc">A tiny NFC tag that triggers distraction-free focus sessions on your phone. Stick it on your desk, your library spot, or anywhere you study.</p>
+            <div class="price-row">
+                <span class="price">£10</span>
+                <span class="price-note">per tag · free shipping</span>
+            </div>
+            <div class="features">
+                <div class="feature"><div class="feature-dot"></div>Pre-configured</div>
+                <div class="feature"><div class="feature-dot"></div>Adhesive backing</div>
+                <div class="feature"><div class="feature-dot"></div>Works with iPhone 7+</div>
+                <div class="feature"><div class="feature-dot"></div>Coin-sized</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-section">
+        <div class="how-title">How It Works</div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">01</div>
+                <div class="step-title">Stick it down</div>
+                <div class="step-desc">Peel the adhesive backing and place your tag at your study spot.</div>
+            </div>
+            <div class="step">
+                <div class="step-number">02</div>
+                <div class="step-title">Tap in</div>
+                <div class="step-desc">Hold your phone against the tag to start a focus session. Distracting apps are blocked instantly.</div>
+            </div>
+            <div class="step">
+                <div class="step-number">03</div>
+                <div class="step-title">Tap out</div>
+                <div class="step-desc">When you're done, tap again to unlock your apps. Track your focus time in the app.</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="order-section" id="order">
+        <div class="order-card">
+            <div id="orderForm">
+                <div class="order-title">Order your tag</div>
+                <div class="order-subtitle">We'll configure and post it to you within 2-3 working days.</div>
+
+                <div class="form-row form-group">
+                    <div>
+                        <label>First Name</label>
+                        <input type="text" id="firstName" placeholder="John" required>
+                    </div>
+                    <div>
+                        <label>Last Name</label>
+                        <input type="text" id="lastName" placeholder="Smith" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="email" placeholder="you@university.ac.uk" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Address Line 1</label>
+                    <input type="text" id="address1" placeholder="123 Library Road" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Address Line 2 (optional)</label>
+                    <input type="text" id="address2" placeholder="Flat 4B">
+                </div>
+
+                <div class="form-row form-group">
+                    <div>
+                        <label>City</label>
+                        <input type="text" id="city" placeholder="Cambridge" required>
+                    </div>
+                    <div>
+                        <label>Postcode</label>
+                        <input type="text" id="postcode" placeholder="CB2 1TN" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Quantity</label>
+                    <div class="quantity-selector">
+                        <button class="qty-btn" onclick="changeQty(-1)">−</button>
+                        <span class="qty-value" id="qty">1</span>
+                        <button class="qty-btn" onclick="changeQty(1)">+</button>
+                    </div>
+                </div>
+
+                <div class="order-total">
+                    <span class="total-label">Total</span>
+                    <span class="total-price" id="totalPrice">£10.00</span>
+                </div>
+
+                <button class="submit-btn" onclick="submitOrder()">Place Order</button>
+
+                <p class="payment-note">You'll receive a payment link via email after placing your order.<br>UK shipping only. Tags are posted within 2-3 working days.</p>
+            </div>
+
+            <div class="success-message" id="successMsg">
+                <div class="success-icon">✓</div>
+                <div class="success-title">Order received!</div>
+                <p class="success-desc">Check your email for a payment link. Once paid, we'll configure your tag and post it within 2-3 working days.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <span class="footer-text">© 2026 TappIn</span>
+        <div class="footer-links">
+            <a href="https://johnvrs24-cmd.github.io/tappinprivacy/">Privacy</a>
+            <a href="mailto:johnvrs24@gmail.com">Contact</a>
+        </div>
+    </footer>
+
+    <script>
+        let quantity = 1;
+        const pricePerTag = 10;
+
+        function changeQty(delta) {
+            quantity = Math.max(1, Math.min(10, quantity + delta));
+            document.getElementById('qty').textContent = quantity;
+            document.getElementById('totalPrice').textContent = '£' + (quantity * pricePerTag).toFixed(2);
+        }
+
+        function submitOrder() {
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const address1 = document.getElementById('address1').value.trim();
+            const address2 = document.getElementById('address2').value.trim();
+            const city = document.getElementById('city').value.trim();
+            const postcode = document.getElementById('postcode').value.trim();
+
+            if (!firstName || !lastName || !email || !address1 || !city || !postcode) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            if (!email.includes('@')) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            // Build mailto link to send order to yourself
+            const subject = encodeURIComponent('TappIn Tag Order - ' + firstName + ' ' + lastName);
+            const body = encodeURIComponent(
+                'NEW ORDER\n' +
+                '=========\n\n' +
+                'Name: ' + firstName + ' ' + lastName + '\n' +
+                'Email: ' + email + '\n\n' +
+                'Address:\n' +
+                address1 + '\n' +
+                (address2 ? address2 + '\n' : '') +
+                city + '\n' +
+                postcode + '\n\n' +
+                'Quantity: ' + quantity + '\n' +
+                'Total: £' + (quantity * pricePerTag).toFixed(2) + '\n'
+            );
+
+            // Open mail client
+            window.location.href = 'mailto:johnvrs24@gmail.com?subject=' + subject + '&body=' + body;
+
+            // Show success
+            document.getElementById('orderForm').style.display = 'none';
+            document.getElementById('successMsg').classList.add('show');
+        }
+    </script>
+
+</body>
+</html>
